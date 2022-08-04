@@ -11,7 +11,12 @@ const database_1 = __importDefault(require("../config/database"));
 require("dotenv").config();
 const port = process.env.PORT || 5000;
 const app = (0, express_1.default)();
-app.use((0, cors_1.default)());
+const corsOptions = {
+    origin: "*",
+    credentials: true,
+    optionSuccessStatus: 200,
+};
+app.use((0, cors_1.default)(corsOptions));
 // connectDatabase();
 app.use("/graphql", (0, express_graphql_1.graphqlHTTP)({
     schema: schema_1.default,
